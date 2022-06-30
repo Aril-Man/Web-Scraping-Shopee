@@ -50,6 +50,8 @@ list_merk, list_price, list_location, list_buy = [], [], [], []
 # looping untuk mengambil data
 for d in data.find_all('div', 'col-xs-2-4 shopee-search-item-result__item'):
     count += 1
+    print('---------------')
+    print('prosessing ke-{}'.format(count))
     
     merk = d.find('div', 'ie3A+n bM+7UW Cve6sh').get_text()
     price = d.find('div', 'vioxXd rVLWG6').get_text()
@@ -65,6 +67,6 @@ for d in data.find_all('div', 'col-xs-2-4 shopee-search-item-result__item'):
     list_buy.append(terjual)
 
 # # menyimpan data ke dataframe lalu menyimpan ke csv
-df = pd.DataFrame({'No': count ,'merk': list_merk, 'price': list_price, 'location': list_location, 'buy': list_buy})
+df = pd.DataFrame({'merk': list_merk, 'price': list_price, 'location': list_location, 'buy': list_buy})
 print(df)
 df.to_csv('hasil/hasil_scaping_{}_page-{}.csv'.format(keyword, page), index=False)  
